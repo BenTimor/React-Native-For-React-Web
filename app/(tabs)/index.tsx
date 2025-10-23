@@ -35,16 +35,18 @@ export default function MyBucketListScreen() {
   const [modalVisible, setModalVisible] = useState(false);
 
   /**
-   * 📚 STEP 1 & 6: Get bucket list data from our custom hook
+   * 📚 STEP 2 & 📚 STEP 6: Get bucket list data from our custom hook
    *
    * 🎯 CHALLENGE: Uncomment the line below to use the hook!
    * This custom hook manages all our data and AsyncStorage operations.
    */
   // const { items, isLoading, addItem, deleteItem, toggleComplete } = useBucketStorage();
 
-  // TEMPORARY: Hardcoded data for STEP 1
+  // 📚 STEP 1 : TEMPORARY: Hardcoded data for STEP 1
   // Remove this once you uncomment the hook above!
-  const items: any[] = [];
+  const items: any[] = [
+    // Example: { title: 'Visit the Grand Canyon' }
+  ];
   const isLoading = false;
   const addItem = async () => {};
   const deleteItem = async () => {};

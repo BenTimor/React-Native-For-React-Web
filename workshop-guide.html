@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucket List App - Workshop Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .progress-bar-container {
+            background: rgba(255, 255, 255, 0.2);
+            height: 8px;
+            border-radius: 4px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: #4CAF50;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            margin-top: 10px;
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .intro {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .intro h2 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .time-info {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .time-badge {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .time-badge strong {
+            color: #667eea;
+        }
+
+        .step {
+            margin-bottom: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .step.completed {
+            border-color: #4CAF50;
+            background: #f1f8f4;
+        }
+
+        .step-header {
+            background: #f8f9fa;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: background 0.3s ease;
+        }
+
+        .step-header:hover {
+            background: #e9ecef;
+        }
+
+        .step.completed .step-header {
+            background: #e8f5e9;
+        }
+
+        .step-checkbox {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step.completed .step-number {
+            background: #4CAF50;
+        }
+
+        .step-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .step-time {
+            background: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: #667eea;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .step-toggle {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .step.expanded .step-toggle {
+            transform: rotate(180deg);
+        }
+
+        .step-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .step.expanded .step-content {
+            max-height: 2000px;
+        }
+
+        .step-body {
+            padding: 25px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .step-goal {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .step-goal strong {
+            color: #856404;
+        }
+
+        .todo-list {
+            margin: 20px 0;
+        }
+
+        .todo-item {
+            padding: 10px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .todo-item::before {
+            content: "→";
+            color: #667eea;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .challenge {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .challenge-title {
+            color: #1976D2;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .key-learning {
+            background: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .key-learning-title {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkpoint {
+            background: #fff3e0;
+            border: 2px dashed #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .checkpoint strong {
+            color: #e65100;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .bonus-section {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 12px;
+        }
+
+        .bonus-section h2 {
+            color: #d63031;
+            margin-bottom: 15px;
+        }
+
+        .bonus-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .bonus-item h3 {
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .reset-button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .reset-button:hover {
+            background: #c82333;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #6c757d;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .step-time {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            .step-title {
+                flex-wrap: wrap;
+            }
+
+            .time-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Bucket List App Workshop</h1>
+            <p>Build a React Native app in 40 minutes!</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="progress-text" id="progressText">0 of 7 steps completed (0%)</div>
+        </div>
+
+        <div class="content">
+            <div class="intro">
+                <h2>🌐 For React Web Developers</h2>
+                <p>Good news! You already know most of what you need:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Same React concepts:</strong> useState, useEffect, components, props</li>
+                    <li><strong>Same patterns:</strong> Custom hooks, component composition, conditional rendering</li>
+                    <li><strong>Different primitives:</strong> <code>&lt;View&gt;</code> instead of <code>&lt;div&gt;</code>, <code>&lt;Text&gt;</code> instead of text nodes</li>
+                </ul>
+                <div class="time-info">
+                    <div class="time-badge"><strong>⏱️ Duration:</strong> 40 minutes</div>
+                    <div class="time-badge"><strong>📱 Device:</strong> Expo Go app required</div>
+                    <div class="time-badge"><strong>🎯 Goal:</strong> Working Bucket List app</div>
+                </div>
+            </div>
+
+            <!-- Step 1 -->
+            <div class="step" data-step="1">
+                <div class="step-header">
+                    <input type="checkbox" class="step-checkbox">
+                    <div class="step-title">
+                        <div class="step-number">1</div>
+                        <div class="step-name">Display a Basic List</div>
+                        <div class="step-time">5 min</div>
+                    </div>
+                    <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="step-content">
+                    <div class="step-body">
+                        <div class="step-goal">
+                            <strong>🎯 Goal:</strong> Render a simple list of text items
+                        </div>
+
+                        <h3>What to do:</h3>
+                        <div class="todo-list">
+                            <div class="todo-item">Open <code>app/(tabs)/index.tsx</code></div>
+                            <div class="todo-item">Look for the comment <code>📚 STEP 1</code></div>
+                            <div class="todo-item">Create a simple array of bucket list items</div>
+                            <div class="todo-item">Try rendering them using <code>FlatList</code></div>
+                        </div>
+
+                        <div class="challenge">
+                            <div class="challenge-title">🎯 Challenge</div>
+                            <p>Can you figure out the FlatList syntax before uncommenting hints? It's like <code>.map()</code> in web but optimized for mobile!</p>
+                        </div>
+
+                        <div class="key-learning">
+                            <div class="key-learning-title">💡 Key Learning</div>
+                            <ul style="margin-left: 20px;">
+                                <li><code>FlatList</code> vs <code>.map()</code> - both iterate over arrays, but FlatList is optimized for mobile</li>
+                                <li>Components are JSX, just like React web!</li>
+                            </ul>
+                        </div>
+
+                        <div class="checkpoint">
+                            <strong>✅ Check your work:</strong> You should see a basic list of text items on screen
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step" data-step="2">
+                <div class="step-header">
+                    <input type="checkbox" class="step-checkbox">
+                    <div class="step-title">
+                        <div class="step-number">2</div>
+                        <div class="step-name">Add New Items</div>
+                        <div class="step-time">5 min</div>
+                    </div>
+                    <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="step-content">
+                    <div class="step-body">
+                        <div class="step-goal">
+                            <strong>🎯 Goal:</strong> Allow users to add new bucket list items
+                        </div>
+
+                        <h3>What to do:</h3>
+                        <div class="todo-list">
+                            <div class="todo-item">Still in <code>app/(tabs)/index.tsx</code>, find <code>📚 STEP 2</code></div>
+                            <div class="todo-item">Notice the floating <code>+</code> button at the bottom - it's already wired up!</div>
+                            <div class="todo-item">Check out <code>components/add-item-modal.tsx</code> - find the <code>handleAdd</code> function</div>
+                            <div class="todo-item">Uncomment the <code>useBucketStorage</code> hook at the top of <code>index.tsx</code></div>
+                            <div class="todo-item">Remove the temporary hardcoded items array</div>
+                        </div>
+
+                        <div class="challenge">
+                            <div class="challenge-title">🎯 Challenge</div>
+                            <p>Implement the <code>handleAdd</code> function logic to:</p>
+                            <ul style="margin-left: 20px; margin-top: 8px;">
+                                <li>Check if title is not empty</li>
+                                <li>Call <code>onAdd</code> with the title and description</li>
+                                <li>Clear the form and close modal</li>
+                            </ul>
+                        </div>
+
+                        <div class="key-learning">
+                            <div class="key-learning-title">💡 Key Learning</div>
+                            <ul style="margin-left: 20px;">
+                                <li>Modal component in React Native (built-in!)</li>
+                                <li>TextInput is like <code>&lt;input&gt;</code> but uses <code>onChangeText</code> instead of <code>onChange</code></li>
+                                <li>State management is EXACTLY the same as React web</li>
+                            </ul>
+                        </div>
+
+                        <div class="checkpoint">
+                            <strong>✅ Check your work:</strong> Tap the + button, add an item, it should appear in the list
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step" data-step="3">
+                <div class="step-header">
+                    <input type="checkbox" class="step-checkbox">
+                    <div class="step-title">
+                        <div class="step-number">3</div>
+                        <div class="step-name">Delete Items</div>
+                        <div class="step-time">5 min</div>
+                    </div>
+                    <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="step-content">
+                    <div class="step-body">
+                        <div class="step-goal">
+                            <strong>🎯 Goal:</strong> Remove items from the list
+                        </div>
+
+                        <h3>What to do:</h3>
+                        <div class="todo-list">
+                            <div class="todo-item">Open <code>hooks/use-bucket-storage.ts</code>, find <code>📚 STEP 3</code></div>
+                            <div class="todo-item">Implement the <code>deleteItem</code> function using <code>.filter()</code></div>
+                            <div class="todo-item">Open <code>components/bucket-list-item.tsx</code>, find <code>📚 STEP 3</code></div>
+                            <div class="todo-item">Implement the <code>handleDelete</code> function to show a confirmation dialog</div>
+                            <div class="todo-item">Uncomment the <code>renderItem</code> function in <code>index.tsx</code></div>
+                        </div>
+
+                        <div class="challenge">
+                            <div class="challenge-title">🎯 Challenge</div>
+                            <p>How would you filter out an item by ID? This is EXACTLY like React web - use <code>.filter()</code>!</p>
+                        </div>
+
+                        <div class="key-learning">
+                            <div class="key-learning-title">💡 Key Learning</div>
+                            <ul style="margin-left: 20px;">
+                                <li><code>Alert.alert()</code> is React Native's version of <code>window.confirm()</code></li>
+                                <li>Array operations (filter, map) work exactly the same as web</li>
+                            </ul>
+                        </div>
+
+                        <div class="checkpoint">
+                            <strong>✅ Check your work:</strong> Tap the trash icon, confirm deletion, item should disappear
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step" data-step="4">
+                <div class="step-header">
+                    <input type="checkbox" class="step-checkbox">
+                    <div class="step-title">
+                        <div class="step-number">4</div>
+                        <div class="step-name">Add Description Field</div>
+                        <div class="step-time">7 min</div>
+                    </div>
+                    <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="step-content">
+                    <div class="step-body">
+                        <div class="step-goal">
+                            <strong>🎯 Goal:</strong> Make items more detailed with descriptions
+                        </div>
+
+                        <h3>What to do:</h3>
+                        <div class="todo-list">
+                            <div class="todo-item">Good news - the description input already exists in <code>AddItemModal</code>!</div>
+                            <div class="todo-item">Check out <code>components/bucket-list-item.tsx</code></div>
+                            <div class="todo-item">Notice how it conditionally renders the description if it exists</div>
+                            <div class="todo-item">Try adding a new item with both title AND description</div>
+                        </div>
+
+                        <div class="key-learning">
+                            <div class="key-learning-title">💡 Key Learning</div>
+                            <ul style="margin-left: 20px;">
+                                <li>Conditional rendering (<code>&&</code> operator) works the same as React web</li>
+                                <li><code>multiline</code> prop on TextInput creates a textarea-like experience</li>
+                            </ul>
+                        </div>
+
+                        <div class="checkpoint">
+                            <strong>✅ Check your work:</strong> Add an item with a description, you should see both title and description displayed
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step" data-step="5">
+                <div class="step-header">
+                    <input type="checkbox" class="step-checkbox">
+                    <div class="step-title">
+                        <div class="step-number">5</div>
+                        <div class="step-name">Mark Items as Done/Undone</div>
+                        <div class="step-time">8 min</div>
+                    </div>
+                    <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="step-content">
+                    <div class="step-body">
+                        <div class="step-goal">
+                            <strong>🎯 Goal:</strong> Toggle completion status with dates
+                        </div>
+
+                        <h3>What to do:</h3>
+                        <div class="todo-list">
+                            <div class="todo-item">Open <code>hooks/use-bucket-storage.ts</code>, find <code>📚 STEP 5</code></div>
+                            <div class="todo-item">Implement <code>toggleComplete</code> function using <code>.map()</code></div>
+                            <div class="todo-item">In <code>app/(tabs)/index.tsx</code>, uncomment the <code>activeItems</code> filter</div>
+                            <div class="todo-item">Open <code>app/(tabs)/explore.tsx</code> (the Completed tab)</div>
+                            <div class="todo-item">Uncomment the hook usage, <code>completedItems</code> filter, and <code>renderItem</code></div>
+                            <div class="todo-item">Test by marking items complete - they should move between tabs!</div>
+                        </div>
+
+                        <div class="challenge">
+                            <div class="challenge-title">🎯 Challenge</div>
+                            <p>Implement toggling the completed status! Hints:</p>
+                            <ul style="margin-left: 20px; margin-top: 8px;">
+                                <li>Use <code>.map()</code> to update the specific item</li>
+                                <li>When marking as complete, set <code>completedAt</code> to current date</li>
+                                <li>When marking as incomplete, clear the <code>completedAt</code> field</li>
+                            </ul>
+                        </div>
+
+                        <div class="key-learning">
+                            <div class="key-learning-title">💡 Key Learning</div>
+                            <ul style="margin-left: 20px;">
+                                <li>Same data, different filters = different views (React pattern!)</li>
+                                <li><code>.map()</code> for updating items works exactly like web</li>
+                                <li>ISO date strings are the same across web and mobile</li>
+                            </ul>
+                        </div>
+
+                        <div class="checkpoint">
+                            <strong>✅ Check your work:</strong> Mark an item complete in "My List" - it should disappear and appear in "Completed" tab with date. Tap again to move back!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="step" data-step="6">
+                <div class="step-header">
+                    <input type="checkbox" class="step-checkbox">
+                    <div class="step-title">
+                        <div class="step-number">6</div>
+                        <div class="step-name">Save Data with AsyncStorage</div>
+                        <div class="step-time">8 min</div>
+                    </div>
+                    <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="step-content">
+                    <div class="step-body">
+                        <div class="step-goal">
+                            <strong>🎯 Goal:</strong> Persist data so it survives app restarts
+                        </div>
+
+                        <h3>What to do:</h3>
+                        <div class="todo-list">
+                            <div class="todo-item">Open <code>hooks/use-bucket-storage.ts</code>, find <code>📚 STEP 6</code></div>
+                            <div class="todo-item">Implement <code>loadItems</code> function: Use <code>AsyncStorage.getItem()</code>, parse JSON, handle empty data</div>
+                            <div class="todo-item">Implement <code>saveItems</code> function: Use <code>AsyncStorage.setItem()</code> with <code>JSON.stringify()</code></div>
+                        </div>
+
+                        <div class="challenge">
+                            <div class="challenge-title">🎯 Challenge</div>
+                            <p>The loading happens in <code>useEffect</code> - just like fetching data in React web! Remember: AsyncStorage is asynchronous, so use <code>async/await</code>.</p>
+                        </div>
+
+                        <div class="key-learning">
+                            <div class="key-learning-title">💡 Key Learning</div>
+                            <ul style="margin-left: 20px;">
+                                <li>AsyncStorage is like localStorage but ASYNCHRONOUS</li>
+                                <li>Must use async/await (unlike localStorage.getItem which is synchronous)</li>
+                                <li>useEffect works exactly the same as React web</li>
+                            </ul>
+                        </div>
+
+                        <div class="checkpoint">
+                            <strong>✅ Check your work:</strong> Add some items, close and restart the app (shake device → "Reload"). Your items should still be there!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 7 -->
+            <div class="step" data-step="7">
+                <div class="step-header">
+                    <input type="checkbox" class="step-checkbox">
+                    <div class="step-title">
+                        <div class="step-number">7</div>
+                        <div class="step-name">Polish the UI</div>
+                        <div class="step-time">7 min</div>
+                    </div>
+                    <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="step-content">
+                    <div class="step-body">
+                        <div class="step-goal">
+                            <strong>🎯 Goal:</strong> Add nice touches - empty states, date formatting, icons
+                        </div>
+
+                        <h3>What to do:</h3>
+                        <div class="todo-list">
+                            <div class="todo-item">Empty states are already implemented! Check them out in both tabs</div>
+                            <div class="todo-item">Open <code>components/bucket-list-item.tsx</code>, find <code>📚 STEP 7</code></div>
+                            <div class="todo-item">Implement <code>formatDate</code> function to show nice dates like "Jan 15, 2024"</div>
+                        </div>
+
+                        <div class="challenge">
+                            <div class="challenge-title">🎯 Challenge</div>
+                            <p>Use JavaScript's <code>Date</code> object - same as web! Format it nicely with <code>toLocaleDateString()</code>.</p>
+                        </div>
+
+                        <div class="key-learning">
+                            <div class="key-learning-title">💡 Key Learning</div>
+                            <ul style="margin-left: 20px;">
+                                <li>Date formatting works the same as web</li>
+                                <li>Icons come from SF Symbols (iOS) / Material Icons (Android)</li>
+                                <li>Empty states improve UX - same pattern as web</li>
+                            </ul>
+                        </div>
+
+                        <div class="checkpoint">
+                            <strong>✅ Check your work:</strong> Completed items should show nicely formatted dates
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bonus Section -->
+            <div class="bonus-section">
+                <h2>🚀 Advanced Features (For Quick Learners)</h2>
+                <p style="margin-bottom: 15px;">If you finish early, try these challenges:</p>
+
+                <div class="bonus-item">
+                    <h3>🔹 Edit Existing Items</h3>
+                    <p><strong>Challenge:</strong> Allow users to edit title/description of existing items</p>
+                    <p style="margin-top: 8px;"><strong>Hints:</strong> Add an "edit" button to BucketListItem, reuse AddItemModal but pre-fill with existing data, implement the <code>updateItem</code> function</p>
+                </div>
+
+                <div class="bonus-item">
+                    <h3>🔹 Custom Completion Date</h3>
+                    <p><strong>Challenge:</strong> Let users set a specific date when they completed something</p>
+                    <p style="margin-top: 8px;"><strong>Hints:</strong> Look into <code>expo-date-picker</code> or use a TextInput for date, modify <code>toggleComplete</code> to accept an optional date parameter</p>
+                </div>
+
+                <div class="bonus-item">
+                    <h3>🔹 Add Photos to Items</h3>
+                    <p><strong>Challenge:</strong> Let users add preview images to bucket list items</p>
+                    <p style="margin-top: 8px;"><strong>Hints:</strong> Use <code>expo-image-picker</code> (already installed!), store the image URI in the <code>imageUri</code> field, use <code>&lt;Image&gt;</code> component to display</p>
+                </div>
+
+                <div class="bonus-item">
+                    <h3>🔹 Add Notes/Comments</h3>
+                    <p><strong>Challenge:</strong> Allow adding notes to items</p>
+                    <p style="margin-top: 8px;"><strong>Hints:</strong> Add a <code>notes</code> field (already in TypeScript interface!), add another TextInput to the modal, display notes in item details</p>
+                </div>
+            </div>
+
+            <button class="reset-button" onclick="resetProgress()">🔄 Reset Progress</button>
+        </div>
+
+        <div class="footer">
+            <p>🎓 React Native Workshop - Built with ❤️ for React Web Developers</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                Need help? Check out <a href="./QUICK_REFERENCE.md" style="color: #667eea;">QUICK_REFERENCE.md</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Load saved progress from localStorage
+        function loadProgress() {
+            const saved = localStorage.getItem('workshopProgress');
+            if (saved) {
+                const progress = JSON.parse(saved);
+                progress.forEach((completed, index) => {
+                    const step = document.querySelector(`.step[data-step="${index + 1}"]`);
+                    if (step && completed) {
+                        const checkbox = step.querySelector('.step-checkbox');
+                        checkbox.checked = true;
+                        step.classList.add('completed');
+                    }
+                });
+                updateProgress();
+            }
+        }
+
+        // Save progress to localStorage
+        function saveProgress() {
+            const checkboxes = document.querySelectorAll('.step-checkbox');
+            const progress = Array.from(checkboxes).map(cb => cb.checked);
+            localStorage.setItem('workshopProgress', JSON.stringify(progress));
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.step-checkbox');
+            const total = checkboxes.length;
+            const completed = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const percentage = Math.round((completed / total) * 100);
+
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('progressText').textContent =
+                `${completed} of ${total} steps completed (${percentage}%)`;
+        }
+
+        // Toggle step expansion
+        document.querySelectorAll('.step-header').forEach(header => {
+            header.addEventListener('click', (e) => {
+                // Don't toggle if clicking checkbox
+                if (e.target.classList.contains('step-checkbox')) {
+                    return;
+                }
+
+                const step = header.closest('.step');
+                step.classList.toggle('expanded');
+            });
+        });
+
+        // Handle checkbox changes
+        document.querySelectorAll('.step-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                const step = e.target.closest('.step');
+                if (e.target.checked) {
+                    step.classList.add('completed');
+                } else {
+                    step.classList.remove('completed');
+                }
+                updateProgress();
+                saveProgress();
+            });
+        });
+
+        // Reset progress
+        function resetProgress() {
+            if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+                localStorage.removeItem('workshopProgress');
+                document.querySelectorAll('.step-checkbox').forEach(cb => {
+                    cb.checked = false;
+                });
+                document.querySelectorAll('.step').forEach(step => {
+                    step.classList.remove('completed');
+                });
+                updateProgress();
+            }
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProgress();
+        });
+
+        // Auto-expand first step
+        document.querySelector('.step[data-step="1"]').classList.add('expanded');
+    </script>
+</body>
+</html>
