@@ -55,7 +55,6 @@ export default function MyBucketListScreen() {
   // Uncomment the code below to get started:
   /*
   const [items, setItems] = useState<any[]>([]);
-  const isLoading = false; // No loading needed for local state!
 
   const addItem = (title: string, description?: string) => {
     // 🎯 TODO: Implement adding a new item
