@@ -645,20 +645,16 @@
                 <div class="step-content">
                     <div class="step-body">
                         <div class="step-goal">
-                            <strong>🎯 Goal:</strong> Toggle completion status with dates
+                            <strong>🎯 Goal:</strong> Toggle completion status with visual feedback
                         </div>
 
                         <h3>What to do:</h3>
                         <div class="todo-list">
-                            <div class="todo-item">In <code>app/(tabs)/index.tsx</code>, find <code>📚 STEP 5: Add toggle complete functionality</code></div>
-                            <div class="todo-item">Uncomment the STEP 5 section</div>
+                            <div class="todo-item">Open <code>hooks/use-bucket-storage.ts</code>, find <code>📚 STEP 5: Toggle completion status</code></div>
                             <div class="todo-item"><strong>🎯 Try implementing <code>toggleComplete</code> yourself!</strong> Use <code>.map()</code> to update the item</div>
                             <div class="todo-item">When complete: set <code>completed: true</code> and <code>completedAt: new Date().toISOString()</code></div>
                             <div class="todo-item">When incomplete: set <code>completed: false</code> and <code>completedAt: undefined</code></div>
-                            <div class="todo-item">If stuck, uncomment the solution code</div>
-                            <div class="todo-item">Uncomment the <code>activeItems</code> filter, comment out "Use all items"</div>
-                            <div class="todo-item">Open <code>app/(tabs)/explore.tsx</code>, uncomment STEP 5 section</div>
-                            <div class="todo-item">Uncomment <code>completedItems</code> filter and <code>renderItem</code></div>
+                            <div class="todo-item">If stuck, uncomment the solution code inside the function</div>
                         </div>
 
                         <div class="challenge">
@@ -677,14 +673,15 @@
                         <div class="key-learning">
                             <div class="key-learning-title">💡 Key Learning</div>
                             <ul style="margin-left: 20px;">
-                                <li>Same data, different filters = different views (React pattern!)</li>
                                 <li><code>.map()</code> for updating items works exactly like web</li>
                                 <li>ISO date strings are the same across web and mobile</li>
+                                <li>The UI automatically updates with strikethrough and checkmark when completed</li>
+                                <li>Completed items show with a completion date!</li>
                             </ul>
                         </div>
 
                         <div class="checkpoint">
-                            <strong>✅ Check your work:</strong> Mark an item complete in "My List" - it should disappear and appear in "Completed" tab with date. Tap again to move back!
+                            <strong>✅ Check your work:</strong> Mark an item complete - it should show with a checkmark, strikethrough text, and completion date. Tap again to mark as incomplete!
                         </div>
                     </div>
                 </div>
@@ -791,6 +788,22 @@
             <div class="bonus-section">
                 <h2>🚀 Advanced Features (For Quick Learners)</h2>
                 <p style="margin-bottom: 15px;">If you finish early, try these challenges:</p>
+
+                <div class="bonus-item">
+                    <h3>🔹 Create a "Completed" Tab</h3>
+                    <p><strong>Challenge:</strong> Add a second tab to show only completed items</p>
+                    <p style="margin-top: 8px;"><strong>What you'll learn:</strong> Tab navigation, filtering data for different views, component reusability</p>
+                    <p style="margin-top: 8px;"><strong>Hints:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 8px;">
+                        <li>In <code>app/(tabs)/_layout.tsx</code>, add another <code>&lt;Tabs.Screen&gt;</code> with <code>name="explore"</code></li>
+                        <li>Create <code>app/(tabs)/explore.tsx</code> by copying <code>index.tsx</code></li>
+                        <li>Use the same <code>useBucketStorage()</code> hook (shared state!)</li>
+                        <li>Filter with <code>items.filter(item => item.completed)</code> instead</li>
+                        <li>In <code>index.tsx</code>, filter with <code>items.filter(item => !item.completed)</code></li>
+                        <li>Both tabs will now share the same data but show different filtered views!</li>
+                    </ul>
+                    <p style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">💡 This is the same pattern as in React web - same data, different filters!</p>
+                </div>
 
                 <div class="bonus-item">
                     <h3>🔹 Edit Existing Items</h3>

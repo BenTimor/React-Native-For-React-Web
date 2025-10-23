@@ -136,7 +136,6 @@ export default function MyBucketListScreen() {
   const tintColor = useThemeColor({}, 'tint');
 
   /**
-   * 📚 STEP 5
    * Filter to show only ACTIVE items (not completed)
    * Completed items will be shown in the "Completed" tab
    *
