@@ -75,7 +75,7 @@ export default function MyBucketListScreen() {
     // setItems([...items, newItem]);
   };
   */
-
+ 
   // ==========================================
   // 📚 STEP 3: Add delete functionality
   // ==========================================
@@ -178,21 +178,11 @@ export default function MyBucketListScreen() {
    *   <FlatList data={items} renderItem={({ item }) => <ItemComponent item={item} />} />
    */
   const renderItem = ({ item }: { item: any }) => (
-    // TODO: Render the BucketListItem component
-    // Uncomment the code below if you get stuck:
-
-    /*
     <BucketListItem
       item={item}
       onToggleComplete={toggleComplete}
       onDelete={deleteItem}
     />
-    */
-
-    // TEMPORARY placeholder
-    <ThemedView style={styles.itemPlaceholder}>
-      <ThemedText>{item.title}</ThemedText>
-    </ThemedView>
   );
 
   /**
@@ -287,11 +277,6 @@ const styles = StyleSheet.create({
   listContent: {
     padding: 16,
     paddingBottom: 100, // Extra space for floating button
-  },
-  itemPlaceholder: {
-    padding: 16,
-    marginBottom: 8,
-    borderRadius: 8,
   },
   emptyContainer: {
     alignItems: 'center',

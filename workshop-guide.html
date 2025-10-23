@@ -544,7 +544,6 @@
                             <div class="todo-item">If stuck, uncomment the solution (it's just one line!)</div>
                             <div class="todo-item">In <code>components/bucket-list-item.tsx</code>, find <code>📚 STEP 3</code></div>
                             <div class="todo-item">Uncomment the <code>handleDelete</code> function</div>
-                            <div class="todo-item">In <code>index.tsx</code>, uncomment the <code>renderItem</code> to use BucketListItem component</div>
                         </div>
 
                         <div class="challenge">
@@ -591,16 +590,34 @@
 
                         <h3>What to do:</h3>
                         <div class="todo-list">
-                            <div class="todo-item">Good news - the description input already exists in <code>AddItemModal</code>!</div>
-                            <div class="todo-item">Check out <code>components/bucket-list-item.tsx</code></div>
-                            <div class="todo-item">Notice how it conditionally renders the description if it exists</div>
-                            <div class="todo-item">Try adding a new item with both title AND description</div>
+                            <div class="todo-item">Good news - the description input already works in <code>AddItemModal</code>!</div>
+                            <div class="todo-item">But descriptions aren't displayed yet - let's add that!</div>
+                            <div class="todo-item">Open <code>components/bucket-list-item.tsx</code>, find <code>📚 STEP 4</code></div>
+                            <div class="todo-item"><strong>🎯 Try adding the description display yourself!</strong></div>
+                            <div class="todo-item">Use conditional rendering: <code>{item.description && <Text>...</Text>}</code></div>
+                            <div class="todo-item">Apply styles: <code>styles.description</code> and <code>styles.completedText</code> when completed</div>
+                            <div class="todo-item">If stuck, uncomment the solution code</div>
+                            <div class="todo-item">Test by adding an item with both title and description</div>
+                        </div>
+
+                        <div class="challenge">
+                            <div class="challenge-title">🎯 Challenge - Add description display!</div>
+                            <p><strong>You already know conditional rendering from React web!</strong></p>
+                            <p style="margin-top: 8px;">Add this below the title:</p>
+                            <ul style="margin-left: 20px; margin-top: 8px;">
+                                <li>Check if <code>item.description</code> exists with <code>&&</code></li>
+                                <li>Render a <code>&lt;ThemedText&gt;</code> with the description</li>
+                                <li>Apply <code>styles.description</code></li>
+                                <li>Also apply <code>styles.completedText</code> when <code>item.completed</code> is true</li>
+                            </ul>
+                            <p style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">Hint: Use an array for multiple styles: <code>style={[styles.description, item.completed && styles.completedText]}</code></p>
                         </div>
 
                         <div class="key-learning">
                             <div class="key-learning-title">💡 Key Learning</div>
                             <ul style="margin-left: 20px;">
-                                <li>Conditional rendering (<code>&&</code> operator) works the same as React web</li>
+                                <li>Conditional rendering (<code>&&</code> operator) works exactly the same as React web!</li>
+                                <li>Style arrays let you apply multiple/conditional styles</li>
                                 <li><code>multiline</code> prop on TextInput creates a textarea-like experience</li>
                             </ul>
                         </div>

@@ -56,14 +56,12 @@ export function AddItemModal({ visible, onClose, onAdd }: AddItemModalProps) {
     // TODO: Implement the add logic
     // Uncomment the code below if you get stuck:
 
-    /*
-    if (title.trim()) {
-      onAdd(title.trim(), description.trim() || undefined);
-      setTitle('');
-      setDescription('');
-      onClose();
-    }
-    */
+    // if (title.trim()) {
+    //   onAdd(title.trim(), description.trim() || undefined);
+    //   setTitle('');
+    //   setDescription('');
+    //   onClose();
+    // }
   };
 
   /**

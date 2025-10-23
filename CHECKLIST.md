@@ -91,7 +91,6 @@ Good news! You already know most of what you need:
 4. If stuck, uncomment the solution (it's just one line!)
 5. Open `components/bucket-list-item.tsx`, find `📚 STEP 3`
 6. Uncomment the `handleDelete` function
-7. In `index.tsx`, uncomment the `renderItem` function to use BucketListItem component
 
 **Key Learning**:
 - `Alert.alert()` is React Native's version of `window.confirm()`
@@ -103,16 +102,23 @@ Good news! You already know most of what you need:
 
 ### ✅ Step 4: Add Description Field (7 min)
 
-**Goal**: Make items more detailed with descriptions
+**Goal**: Display item descriptions using conditional rendering
 
 **What to do**:
-1. Good news - the description input already exists in `AddItemModal`!
-2. Check out `components/bucket-list-item.tsx`
-3. Notice how it conditionally renders the description if it exists
-4. Try adding a new item with both title AND description
+1. Good news - the description input already works in `AddItemModal`!
+2. But descriptions aren't displayed yet - let's add that!
+3. Open `components/bucket-list-item.tsx`, find `📚 STEP 4`
+4. **🎯 CHALLENGE - Try adding the description display yourself!**
+   - Use conditional rendering: `{item.description && <ThemedText>...</ThemedText>}`
+   - Apply `styles.description`
+   - Also apply `styles.completedText` when item is completed
+   - Hint: Use style array: `style={[styles.description, item.completed && styles.completedText]}`
+5. If stuck, uncomment the solution code
+6. Test by adding an item with both title and description
 
 **Key Learning**:
-- Conditional rendering (`&&` operator) works the same as React web
+- Conditional rendering (`&&` operator) works exactly the same as React web!
+- Style arrays let you apply multiple/conditional styles
 - `multiline` prop on TextInput creates a textarea-like experience
 
 **Check your work**: Add an item with a description, you should see both title and description displayed

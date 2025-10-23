@@ -112,7 +112,7 @@ export function BucketListItem({
         </ThemedText>
 
         {/* 📚 STEP 4: Show description if it exists */}
-        {item.description && (
+        {/* {item.description && (
           <ThemedText
             style={[
               styles.description,
@@ -121,7 +121,7 @@ export function BucketListItem({
           >
             {item.description}
           </ThemedText>
-        )}
+        )} */}
 
         {/* Show completion date for completed items */}
         {item.completed && item.completedAt && (

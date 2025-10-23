@@ -94,21 +94,11 @@ export default function CompletedScreen() {
    * This is component reusability - same as React web!
    */
   const renderItem = ({ item }: { item: any }) => (
-    // TODO: Render the BucketListItem component
-    // Uncomment the code below if you get stuck:
-
-    /*
     <BucketListItem
       item={item}
       onToggleComplete={toggleComplete}
       onDelete={deleteItem}
     />
-    */
-
-    // TEMPORARY placeholder
-    <ThemedView style={styles.itemPlaceholder}>
-      <ThemedText>{item.title}</ThemedText>
-    </ThemedView>
   );
 
   if (isLoading) {
@@ -168,11 +158,6 @@ const styles = StyleSheet.create({
   },
   listContent: {
     padding: 16,
-  },
-  itemPlaceholder: {
-    padding: 16,
-    marginBottom: 8,
-    borderRadius: 8,
   },
   emptyContainer: {
     alignItems: 'center',
