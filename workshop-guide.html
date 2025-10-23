@@ -432,14 +432,14 @@
                         <h3>What to do:</h3>
                         <div class="todo-list">
                             <div class="todo-item">Open <code>app/(tabs)/index.tsx</code></div>
-                            <div class="todo-item">Look for the comment <code>📚 STEP 1</code></div>
-                            <div class="todo-item">Create a simple array of bucket list items</div>
-                            <div class="todo-item">Try rendering them using <code>FlatList</code></div>
+                            <div class="todo-item">Look for <code>📚 STEP 1: Start with hardcoded data</code></div>
+                            <div class="todo-item">Uncomment the hardcoded <code>items</code> array (3 sample items)</div>
+                            <div class="todo-item">Comment out the "TEMPORARY: Empty placeholder" section below it</div>
                         </div>
 
                         <div class="challenge">
                             <div class="challenge-title">🎯 Challenge</div>
-                            <p>Can you figure out the FlatList syntax before uncommenting hints? It's like <code>.map()</code> in web but optimized for mobile!</p>
+                            <p>The FlatList is already set up for you! Just uncomment the hardcoded data and you'll see your first list appear.</p>
                         </div>
 
                         <div class="key-learning">
@@ -478,20 +478,21 @@
 
                         <h3>What to do:</h3>
                         <div class="todo-list">
-                            <div class="todo-item">Still in <code>app/(tabs)/index.tsx</code>, find <code>📚 STEP 2</code></div>
-                            <div class="todo-item">Notice the floating <code>+</code> button at the bottom - it's already wired up!</div>
-                            <div class="todo-item">Check out <code>components/add-item-modal.tsx</code> - find the <code>handleAdd</code> function</div>
-                            <div class="todo-item">Uncomment the <code>useBucketStorage</code> hook at the top of <code>index.tsx</code></div>
-                            <div class="todo-item">Remove the temporary hardcoded items array</div>
+                            <div class="todo-item">Still in <code>app/(tabs)/index.tsx</code>, find <code>📚 STEP 2: Use local state</code></div>
+                            <div class="todo-item">Comment out the STEP 1 hardcoded array (or delete it)</div>
+                            <div class="todo-item">Uncomment the STEP 2 section (useState with addItem, deleteItem, toggleComplete)</div>
+                            <div class="todo-item">Comment out the "TEMPORARY: Empty placeholder" section</div>
+                            <div class="todo-item">Check out <code>components/add-item-modal.tsx</code> - implement the <code>handleAdd</code> function</div>
                         </div>
 
                         <div class="challenge">
                             <div class="challenge-title">🎯 Challenge</div>
-                            <p>Implement the <code>handleAdd</code> function logic to:</p>
+                            <p>In <code>components/add-item-modal.tsx</code>, implement the <code>handleAdd</code> function:</p>
                             <ul style="margin-left: 20px; margin-top: 8px;">
-                                <li>Check if title is not empty</li>
-                                <li>Call <code>onAdd</code> with the title and description</li>
-                                <li>Clear the form and close modal</li>
+                                <li>Check if title is not empty (use <code>title.trim()</code>)</li>
+                                <li>Call <code>onAdd(title.trim(), description.trim() || undefined)</code></li>
+                                <li>Clear the form: <code>setTitle('')</code> and <code>setDescription('')</code></li>
+                                <li>Close modal: <code>onClose()</code></li>
                             </ul>
                         </div>
 
@@ -501,11 +502,12 @@
                                 <li>Modal component in React Native (built-in!)</li>
                                 <li>TextInput is like <code>&lt;input&gt;</code> but uses <code>onChangeText</code> instead of <code>onChange</code></li>
                                 <li>State management is EXACTLY the same as React web</li>
+                                <li><strong>Note:</strong> This local state only works for one tab. In STEP 6, we'll switch to a shared hook!</li>
                             </ul>
                         </div>
 
                         <div class="checkpoint">
-                            <strong>✅ Check your work:</strong> Tap the + button, add an item, it should appear in the list
+                            <strong>✅ Check your work:</strong> Tap the + button, add an item, it should appear in the list. Note: The "Completed" tab won't work yet - that's ok!
                         </div>
                     </div>
                 </div>
@@ -532,16 +534,15 @@
 
                         <h3>What to do:</h3>
                         <div class="todo-list">
-                            <div class="todo-item">Open <code>hooks/use-bucket-storage.ts</code>, find <code>📚 STEP 3</code></div>
-                            <div class="todo-item">Implement the <code>deleteItem</code> function using <code>.filter()</code></div>
+                            <div class="todo-item">Good news - <code>deleteItem</code> is already implemented in STEP 2!</div>
                             <div class="todo-item">Open <code>components/bucket-list-item.tsx</code>, find <code>📚 STEP 3</code></div>
-                            <div class="todo-item">Implement the <code>handleDelete</code> function to show a confirmation dialog</div>
-                            <div class="todo-item">Uncomment the <code>renderItem</code> function in <code>index.tsx</code></div>
+                            <div class="todo-item">Uncomment the <code>handleDelete</code> function (shows confirmation dialog)</div>
+                            <div class="todo-item">In <code>index.tsx</code>, uncomment the <code>renderItem</code> function to use BucketListItem</div>
                         </div>
 
                         <div class="challenge">
                             <div class="challenge-title">🎯 Challenge</div>
-                            <p>How would you filter out an item by ID? This is EXACTLY like React web - use <code>.filter()</code>!</p>
+                            <p>Look at how <code>deleteItem</code> is implemented in STEP 2 - it uses <code>.filter()</code> just like React web!</p>
                         </div>
 
                         <div class="key-learning">
@@ -622,21 +623,22 @@
 
                         <h3>What to do:</h3>
                         <div class="todo-list">
-                            <div class="todo-item">Open <code>hooks/use-bucket-storage.ts</code>, find <code>📚 STEP 5</code></div>
-                            <div class="todo-item">Implement <code>toggleComplete</code> function using <code>.map()</code></div>
+                            <div class="todo-item">Good news - <code>toggleComplete</code> is already in STEP 2! Look at how it works.</div>
                             <div class="todo-item">In <code>app/(tabs)/index.tsx</code>, uncomment the <code>activeItems</code> filter</div>
+                            <div class="todo-item">Comment out "TEMPORARY: Use all items for now"</div>
                             <div class="todo-item">Open <code>app/(tabs)/explore.tsx</code> (the Completed tab)</div>
-                            <div class="todo-item">Uncomment the hook usage, <code>completedItems</code> filter, and <code>renderItem</code></div>
+                            <div class="todo-item">Uncomment STEP 2 section (useState with functions)</div>
+                            <div class="todo-item">Uncomment the <code>completedItems</code> filter and <code>renderItem</code></div>
                             <div class="todo-item">Test by marking items complete - they should move between tabs!</div>
                         </div>
 
                         <div class="challenge">
                             <div class="challenge-title">🎯 Challenge</div>
-                            <p>Implement toggling the completed status! Hints:</p>
+                            <p>Look at the <code>toggleComplete</code> implementation in STEP 2:</p>
                             <ul style="margin-left: 20px; margin-top: 8px;">
-                                <li>Use <code>.map()</code> to update the specific item</li>
-                                <li>When marking as complete, set <code>completedAt</code> to current date</li>
-                                <li>When marking as incomplete, clear the <code>completedAt</code> field</li>
+                                <li>It uses <code>.map()</code> to update the specific item - just like React web!</li>
+                                <li>When marking complete, it sets <code>completedAt</code> to current date</li>
+                                <li>When marking incomplete, it clears the <code>completedAt</code> field</li>
                             </ul>
                         </div>
 
@@ -678,13 +680,16 @@
                         <h3>What to do:</h3>
                         <div class="todo-list">
                             <div class="todo-item">Open <code>hooks/use-bucket-storage.ts</code>, find <code>📚 STEP 6</code></div>
-                            <div class="todo-item">Implement <code>loadItems</code> function: Use <code>AsyncStorage.getItem()</code>, parse JSON, handle empty data</div>
-                            <div class="todo-item">Implement <code>saveItems</code> function: Use <code>AsyncStorage.setItem()</code> with <code>JSON.stringify()</code></div>
+                            <div class="todo-item">Uncomment <code>loadItems</code> function (loads from AsyncStorage on app start)</div>
+                            <div class="todo-item">Uncomment <code>saveItems</code> function (saves to AsyncStorage when items change)</div>
+                            <div class="todo-item">Back in <code>index.tsx</code>, comment out STEP 2 (useState)</div>
+                            <div class="todo-item">Uncomment STEP 6 (useBucketStorage hook)</div>
+                            <div class="todo-item">Do the same in <code>explore.tsx</code></div>
                         </div>
 
                         <div class="challenge">
                             <div class="challenge-title">🎯 Challenge</div>
-                            <p>The loading happens in <code>useEffect</code> - just like fetching data in React web! Remember: AsyncStorage is asynchronous, so use <code>async/await</code>.</p>
+                            <p>Notice how the hook works - it's the same logic as STEP 2, but now with persistence! The loading happens in <code>useEffect</code> just like fetching data in React web.</p>
                         </div>
 
                         <div class="key-learning">

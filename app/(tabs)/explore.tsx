@@ -17,18 +17,44 @@ import { BucketListItem } from '@/components/bucket-list-item';
  */
 
 export default function CompletedScreen() {
-  /**
-   * 📚 STEP 5: Use the same hook as the first tab!
-   *
-   * 🎯 CHALLENGE: Uncomment this to get access to the items
-   */
-  // const { items, isLoading, toggleComplete, deleteItem } = useBucketStorage();
+  // ==========================================
+  // 📚 STEP 2 & 5: Use local state (same as index.tsx)
+  // ==========================================
+  // Uncomment this for Steps 2-5 to work with local state:
+  /*
+  const [items, setItems] = useState<any[]>([]);
 
-  // TEMPORARY: Hardcoded data
+  const deleteItem = (id: string) => {
+    setItems(items.filter(item => item.id !== id));
+  };
+
+  const toggleComplete = (id: string) => {
+    setItems(items.map(item => {
+      if (item.id === id) {
+        return {
+          ...item,
+          completed: !item.completed,
+          completedAt: !item.completed ? new Date().toISOString() : undefined,
+        };
+      }
+      return item;
+    }));
+  };
+  */
+
+  // ==========================================
+  // 📚 STEP 6: Use AsyncStorage for persistence
+  // ==========================================
+  // Uncomment this for Step 6 to share data with the first tab:
+  /*
+  const { items, isLoading, toggleComplete, deleteItem } = useBucketStorage();
+  */
+
+  // TEMPORARY: Empty placeholder until you uncomment one of the above
   const items: any[] = [];
   const isLoading = false;
-  const toggleComplete = async () => {};
-  const deleteItem = async () => {};
+  const toggleComplete = async (_id: string) => {};
+  const deleteItem = async (_id: string) => {};
 
   /**
    * 📚 STEP 5: Filter to show only COMPLETED items

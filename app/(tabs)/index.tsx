@@ -34,23 +34,68 @@ export default function MyBucketListScreen() {
    */
   const [modalVisible, setModalVisible] = useState(false);
 
-  /**
-   * 📚 STEP 2 & 📚 STEP 6: Get bucket list data from our custom hook
-   *
-   * 🎯 CHALLENGE: Uncomment the line below to use the hook!
-   * This custom hook manages all our data and AsyncStorage operations.
-   */
-  // const { items, isLoading, addItem, deleteItem, toggleComplete } = useBucketStorage();
-
-  // 📚 STEP 1 : TEMPORARY: Hardcoded data for STEP 1
-  // Remove this once you uncomment the hook above!
-  const items: any[] = [
-    // Example: { title: 'Visit the Grand Canyon' }
+  // ==========================================
+  // 📚 STEP 1: Start with hardcoded data
+  // ==========================================
+  // Uncomment this for Step 1 to see a simple hardcoded list:
+  /*
+  const items = [
+    { id: '1', title: 'Visit Tokyo', completed: false, createdAt: new Date().toISOString() },
+    { id: '2', title: 'Learn to surf', completed: false, createdAt: new Date().toISOString() },
+    { id: '3', title: 'Write a book', completed: false, createdAt: new Date().toISOString() },
   ];
+  */
+
+  // ==========================================
+  // 📚 STEP 2: Use local state (no persistence yet!)
+  // ==========================================
+  // Uncomment this for Step 2 to add/delete items with useState:
+  /*
+  const [items, setItems] = useState<any[]>([]);
+
+  const addItem = (title: string, description?: string) => {
+    const newItem = {
+      id: Date.now().toString(),
+      title,
+      description,
+      completed: false,
+      createdAt: new Date().toISOString(),
+    };
+    setItems([...items, newItem]);
+  };
+
+  const deleteItem = (id: string) => {
+    setItems(items.filter(item => item.id !== id));
+  };
+
+  const toggleComplete = (id: string) => {
+    setItems(items.map(item => {
+      if (item.id === id) {
+        return {
+          ...item,
+          completed: !item.completed,
+          completedAt: !item.completed ? new Date().toISOString() : undefined,
+        };
+      }
+      return item;
+    }));
+  };
+  */
+
+  // ==========================================
+  // 📚 STEP 6: Use AsyncStorage for persistence
+  // ==========================================
+  // Uncomment this for Step 6 to save data that survives app restarts:
+  /*
+  const { items, isLoading, addItem, deleteItem, toggleComplete } = useBucketStorage();
+  */
+
+  // TEMPORARY: Empty placeholder until you uncomment one of the above
+  const items: any[] = [];
   const isLoading = false;
-  const addItem = async () => {};
-  const deleteItem = async () => {};
-  const toggleComplete = async () => {};
+  const addItem = async (_title: string, _description?: string) => { };
+  const deleteItem = async (_id: string) => { };
+  const toggleComplete = async (_id: string) => { };
 
   const tintColor = useThemeColor({}, 'tint');
 
