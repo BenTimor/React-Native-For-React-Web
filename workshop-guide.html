@@ -478,25 +478,25 @@
 
                         <h3>What to do:</h3>
                         <div class="todo-list">
-                            <div class="todo-item">Still in <code>app/(tabs)/index.tsx</code>, find <code>📚 STEP 2: Use local state</code></div>
+                            <div class="todo-item">Still in <code>app/(tabs)/index.tsx</code>, find <code>📚 STEP 2: Add items with useState</code></div>
                             <div class="todo-item">Comment out the STEP 1 hardcoded array</div>
-                            <div class="todo-item">Read the challenge comments in STEP 2 - can you implement it yourself?</div>
-                            <div class="todo-item">Try implementing <code>addItem</code>, <code>deleteItem</code>, and <code>toggleComplete</code></div>
-                            <div class="todo-item">If you get stuck, uncomment the solution code inside each function</div>
-                            <div class="todo-item">Comment out the "TEMPORARY: Empty placeholder" section</div>
-                            <div class="todo-item">In <code>components/add-item-modal.tsx</code>, implement <code>handleAdd</code></div>
+                            <div class="todo-item">Uncomment the STEP 2 section (useState and addItem function)</div>
+                            <div class="todo-item"><strong>🎯 Try implementing <code>addItem</code> yourself!</strong> Read the TODO comments for hints</div>
+                            <div class="todo-item">If stuck, uncomment the solution code inside the function</div>
+                            <div class="todo-item">In <code>components/add-item-modal.tsx</code>, find <code>📚 STEP 2</code></div>
+                            <div class="todo-item"><strong>🎯 Implement <code>handleAdd</code>:</strong> validate, call onAdd, clear form, close modal</div>
+                            <div class="todo-item">Uncomment the solution if you get stuck</div>
                         </div>
 
                         <div class="challenge">
                             <div class="challenge-title">🎯 Challenge - Try it yourself first!</div>
-                            <p><strong>You already know how to do this from React web!</strong></p>
-                            <p style="margin-top: 8px;">Think about:</p>
+                            <p><strong>You already know this from React web!</strong></p>
+                            <p style="margin-top: 8px;"><strong>addItem implementation:</strong></p>
                             <ul style="margin-left: 20px; margin-top: 8px;">
-                                <li><strong>addItem:</strong> Create new item object, add to array with spread operator <code>[...items, newItem]</code></li>
-                                <li><strong>deleteItem:</strong> Filter out the item by id - exactly like web!</li>
-                                <li><strong>toggleComplete:</strong> Map over items, update the one that matches - same as web!</li>
+                                <li>Create a new item object with: id (use <code>Date.now().toString()</code>), title, description, completed: false, createdAt</li>
+                                <li>Add to array with spread operator: <code>setItems([...items, newItem])</code></li>
                             </ul>
-                            <p style="margin-top: 8px;"><strong>Modal handleAdd:</strong> Validate title, call onAdd, clear form, close modal.</p>
+                            <p style="margin-top: 8px;"><strong>handleAdd in modal:</strong> Check if title is not empty, call onAdd, clear form, close modal.</p>
                             <p style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">💡 Only look at the commented solutions if you're truly stuck!</p>
                         </div>
 
@@ -538,15 +538,21 @@
 
                         <h3>What to do:</h3>
                         <div class="todo-list">
-                            <div class="todo-item">Good news - <code>deleteItem</code> is already implemented in STEP 2!</div>
-                            <div class="todo-item">Open <code>components/bucket-list-item.tsx</code>, find <code>📚 STEP 3</code></div>
-                            <div class="todo-item">Uncomment the <code>handleDelete</code> function (shows confirmation dialog)</div>
-                            <div class="todo-item">In <code>index.tsx</code>, uncomment the <code>renderItem</code> function to use BucketListItem</div>
+                            <div class="todo-item">In <code>app/(tabs)/index.tsx</code>, find <code>📚 STEP 3: Add delete functionality</code></div>
+                            <div class="todo-item">Uncomment the STEP 3 section</div>
+                            <div class="todo-item"><strong>🎯 Try implementing <code>deleteItem</code> yourself!</strong> Hint: use <code>.filter()</code></div>
+                            <div class="todo-item">If stuck, uncomment the solution (it's just one line!)</div>
+                            <div class="todo-item">In <code>components/bucket-list-item.tsx</code>, find <code>📚 STEP 3</code></div>
+                            <div class="todo-item">Uncomment the <code>handleDelete</code> function</div>
+                            <div class="todo-item">In <code>index.tsx</code>, uncomment the <code>renderItem</code> to use BucketListItem component</div>
                         </div>
 
                         <div class="challenge">
-                            <div class="challenge-title">🎯 Challenge</div>
-                            <p>Look at how <code>deleteItem</code> is implemented in STEP 2 - it uses <code>.filter()</code> just like React web!</p>
+                            <div class="challenge-title">🎯 Challenge - Try it yourself!</div>
+                            <p><strong>deleteItem implementation:</strong></p>
+                            <p style="margin-top: 8px;">How do you remove an item from an array in React? Use <code>.filter()</code> to keep only items that don't match the id!</p>
+                            <p style="margin-top: 8px;"><code>setItems(items.filter(item => item.id !== id))</code></p>
+                            <p style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">This is EXACTLY the same as React web!</p>
                         </div>
 
                         <div class="key-learning">
@@ -627,23 +633,28 @@
 
                         <h3>What to do:</h3>
                         <div class="todo-list">
-                            <div class="todo-item">Good news - <code>toggleComplete</code> is already in STEP 2! Look at how it works.</div>
-                            <div class="todo-item">In <code>app/(tabs)/index.tsx</code>, uncomment the <code>activeItems</code> filter</div>
-                            <div class="todo-item">Comment out "TEMPORARY: Use all items for now"</div>
-                            <div class="todo-item">Open <code>app/(tabs)/explore.tsx</code> (the Completed tab)</div>
-                            <div class="todo-item">Uncomment STEP 2 section (useState with functions)</div>
-                            <div class="todo-item">Uncomment the <code>completedItems</code> filter and <code>renderItem</code></div>
-                            <div class="todo-item">Test by marking items complete - they should move between tabs!</div>
+                            <div class="todo-item">In <code>app/(tabs)/index.tsx</code>, find <code>📚 STEP 5: Add toggle complete functionality</code></div>
+                            <div class="todo-item">Uncomment the STEP 5 section</div>
+                            <div class="todo-item"><strong>🎯 Try implementing <code>toggleComplete</code> yourself!</strong> Use <code>.map()</code> to update the item</div>
+                            <div class="todo-item">When complete: set <code>completed: true</code> and <code>completedAt: new Date().toISOString()</code></div>
+                            <div class="todo-item">When incomplete: set <code>completed: false</code> and <code>completedAt: undefined</code></div>
+                            <div class="todo-item">If stuck, uncomment the solution code</div>
+                            <div class="todo-item">Uncomment the <code>activeItems</code> filter, comment out "Use all items"</div>
+                            <div class="todo-item">Open <code>app/(tabs)/explore.tsx</code>, uncomment STEP 5 section</div>
+                            <div class="todo-item">Uncomment <code>completedItems</code> filter and <code>renderItem</code></div>
                         </div>
 
                         <div class="challenge">
-                            <div class="challenge-title">🎯 Challenge</div>
-                            <p>Look at the <code>toggleComplete</code> implementation in STEP 2:</p>
+                            <div class="challenge-title">🎯 Challenge - Try it yourself!</div>
+                            <p><strong>toggleComplete implementation:</strong></p>
                             <ul style="margin-left: 20px; margin-top: 8px;">
-                                <li>It uses <code>.map()</code> to update the specific item - just like React web!</li>
-                                <li>When marking complete, it sets <code>completedAt</code> to current date</li>
-                                <li>When marking incomplete, it clears the <code>completedAt</code> field</li>
+                                <li>Use <code>.map()</code> to loop through items (same as React web!)</li>
+                                <li>Find the item with matching id</li>
+                                <li>Toggle the <code>completed</code> field</li>
+                                <li>Set <code>completedAt</code> based on completion status</li>
+                                <li>Return the updated item for matched id, original item for others</li>
                             </ul>
+                            <p style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">This pattern is identical to React web!</p>
                         </div>
 
                         <div class="key-learning">

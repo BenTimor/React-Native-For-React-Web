@@ -54,27 +54,27 @@ Good news! You already know most of what you need:
 **Goal**: Allow users to add new bucket list items using local state
 
 **What to do**:
-1. Still in `app/(tabs)/index.tsx`, find `📚 STEP 2: Use local state`
+1. Still in `app/(tabs)/index.tsx`, find `📚 STEP 2: Add items with useState`
 2. Comment out the STEP 1 hardcoded array
-3. **🎯 CHALLENGE - Try implementing yourself first!** You already know this from React web:
-   - Implement `addItem`: Create item object, add to array with `[...items, newItem]`
-   - Implement `deleteItem`: Filter out item by id
-   - Implement `toggleComplete`: Map over items, update the matching one
-4. If you get stuck, uncomment the solution code inside each function
-5. Comment out the "TEMPORARY: Empty placeholder" section
-6. In `components/add-item-modal.tsx`, implement the `handleAdd` function:
+3. Uncomment the STEP 2 section (useState and addItem function)
+4. **🎯 CHALLENGE - Try implementing `addItem` yourself first!**
+   - Create a new item object with: id (`Date.now().toString()`), title, description, completed: false, createdAt
+   - Add to array: `setItems([...items, newItem])`
+5. If stuck, uncomment the solution code inside the function
+6. In `components/add-item-modal.tsx`, find `📚 STEP 2`, implement `handleAdd`:
    - Check if title is not empty (`title.trim()`)
    - Call `onAdd(title.trim(), description.trim() || undefined)`
    - Clear form: `setTitle('')` and `setDescription('')`
    - Close modal: `onClose()`
+7. If stuck, uncomment the solution
 
 **Key Learning**:
 - Modal component in React Native (built-in!)
 - TextInput is like `<input>` but uses `onChangeText` instead of `onChange`
-- State management is EXACTLY the same as React web
-- **Note**: This local state only works for one tab. In STEP 6, we'll switch to a shared hook!
+- State management is EXACTLY the same as React web - you already know this!
+- **Note**: We'll add delete and toggle functions in later steps
 
-**Check your work**: Tap the + button, add an item, it should appear in the list. The "Completed" tab won't work yet - that's ok!
+**Check your work**: Tap the + button, add an item, it should appear in the list
 
 ---
 
@@ -83,17 +83,19 @@ Good news! You already know most of what you need:
 **Goal**: Remove items from the list
 
 **What to do**:
-1. Open `hooks/use-bucket-storage.ts`, find `📚 STEP 3`
-2. Implement the `deleteItem` function
-   - **Challenge**: How would you filter out an item by ID?
-   - This is EXACTLY like React web - use `.filter()`!
-3. Open `components/bucket-list-item.tsx`, find `📚 STEP 3`
-4. Implement the `handleDelete` function to show a confirmation dialog
-5. Uncomment the `renderItem` function in `index.tsx` to use the real `BucketListItem` component
+1. In `app/(tabs)/index.tsx`, find `📚 STEP 3: Add delete functionality`
+2. Uncomment the STEP 3 section
+3. **🎯 CHALLENGE - Try implementing `deleteItem` yourself!**
+   - Use `.filter()` to keep only items that don't match the id
+   - Hint: `setItems(items.filter(item => item.id !== id))`
+4. If stuck, uncomment the solution (it's just one line!)
+5. Open `components/bucket-list-item.tsx`, find `📚 STEP 3`
+6. Uncomment the `handleDelete` function
+7. In `index.tsx`, uncomment the `renderItem` function to use BucketListItem component
 
 **Key Learning**:
 - `Alert.alert()` is React Native's version of `window.confirm()`
-- Array operations (filter, map) work exactly the same as web
+- Array `.filter()` works exactly the same as web - you already know this!
 
 **Check your work**: Tap the trash icon, confirm deletion, item should disappear
 

@@ -47,23 +47,25 @@ export default function MyBucketListScreen() {
   */
 
   // ==========================================
-  // 📚 STEP 2: Use local state (no persistence yet!)
+  // 📚 STEP 2: Add items with useState
   // ==========================================
-  // 🎯 CHALLENGE: Try implementing these yourself using your React web knowledge!
-  // Think about:
-  // - How do you add items to an array in React? (Hint: spread operator)
-  // - How do you remove items? (Hint: .filter())
-  // - How do you update an item? (Hint: .map())
+  // 🎯 CHALLENGE: Try implementing this yourself!
+  // You already know this from React web - it's the same useState!
   //
-  // Only uncomment the solution below if you get stuck:
+  // Uncomment the code below to get started:
   /*
   const [items, setItems] = useState<any[]>([]);
   const isLoading = false; // No loading needed for local state!
 
   const addItem = (title: string, description?: string) => {
-    // TODO: Create a new item object with id, title, description, completed, createdAt
-    // TODO: Add it to the items array using setItems
-    // Uncomment below if you get stuck:
+    // 🎯 TODO: Implement adding a new item
+    // Think: How do you add to an array in React? (Hint: spread operator [...items, newItem])
+    //
+    // Your item needs: id, title, description, completed: false, createdAt
+    // Generate id with: Date.now().toString()
+    // Get current date with: new Date().toISOString()
+    //
+    // Uncomment the solution below if you get stuck:
     // const newItem = {
     //   id: Date.now().toString(),
     //   title,
@@ -73,17 +75,36 @@ export default function MyBucketListScreen() {
     // };
     // setItems([...items, newItem]);
   };
+  */
 
+  // ==========================================
+  // 📚 STEP 3: Add delete functionality
+  // ==========================================
+  // 🎯 CHALLENGE: Implement delete yourself!
+  // Hint: Use .filter() to remove an item by id - same as React web!
+  //
+  // Uncomment and implement:
+  /*
   const deleteItem = (id: string) => {
-    // TODO: Filter out the item with the given id
+    // 🎯 TODO: Filter out the item with the given id
     // Uncomment below if you get stuck:
     // setItems(items.filter(item => item.id !== id));
   };
+  */
 
+  // ==========================================
+  // 📚 STEP 5: Add toggle complete functionality
+  // ==========================================
+  // 🎯 CHALLENGE: Implement toggling completion status!
+  // Hint: Use .map() to update a specific item - just like React web!
+  //
+  // Uncomment and implement:
+  /*
   const toggleComplete = (id: string) => {
-    // TODO: Use .map() to update the item with the given id
-    // When marking complete, set completedAt to new Date().toISOString()
-    // When marking incomplete, set completedAt to undefined
+    // 🎯 TODO: Use .map() to update the item with the given id
+    // When marking complete: set completed: true and completedAt: new Date().toISOString()
+    // When marking incomplete: set completed: false and completedAt: undefined
+    //
     // Uncomment below if you get stuck:
     // setItems(items.map(item => {
     //   if (item.id === id) {
@@ -106,12 +127,12 @@ export default function MyBucketListScreen() {
   const { items, isLoading, addItem, deleteItem, toggleComplete } = useBucketStorage();
   */
 
-  // TEMPORARY: Empty placeholder until you uncomment one of the above
+  // TEMPORARY: Empty placeholders - replace these as you complete each step!
   const items: any[] = [];
   const isLoading = false;
-  const addItem = async (_title: string, _description?: string) => { };
-  const deleteItem = async (_id: string) => { };
-  const toggleComplete = async (_id: string) => { };
+  const addItem = (_title: string, _description?: string) => {}; // Implement in STEP 2
+  const deleteItem = (_id: string) => {}; // Implement in STEP 3
+  const toggleComplete = (_id: string) => {}; // Implement in STEP 5
 
   const tintColor = useThemeColor({}, 'tint');
 
