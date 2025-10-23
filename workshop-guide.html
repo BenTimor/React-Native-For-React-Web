@@ -878,7 +878,14 @@
                 `${completed} of ${total} steps completed (${percentage}%)`;
         }
 
-        // Toggle step expansion
+        // Close all steps except the one being opened
+        function closeAllSteps() {
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('expanded');
+            });
+        }
+
+        // Toggle step expansion - only one open at a time
         document.querySelectorAll('.step-header').forEach(header => {
             header.addEventListener('click', (e) => {
                 // Don't toggle if clicking checkbox
@@ -887,7 +894,15 @@
                 }
 
                 const step = header.closest('.step');
-                step.classList.toggle('expanded');
+                const wasExpanded = step.classList.contains('expanded');
+
+                // Close all steps first
+                closeAllSteps();
+
+                // If it wasn't expanded before, expand it now
+                if (!wasExpanded) {
+                    step.classList.add('expanded');
+                }
             });
         });
 
@@ -897,6 +912,14 @@
                 const step = e.target.closest('.step');
                 if (e.target.checked) {
                     step.classList.add('completed');
+                    // Auto-collapse when marked as done
+                    step.classList.remove('expanded');
+
+                    // Auto-expand next incomplete step
+                    const nextIncompleteStep = findNextIncompleteStep();
+                    if (nextIncompleteStep) {
+                        nextIncompleteStep.classList.add('expanded');
+                    }
                 } else {
                     step.classList.remove('completed');
                 }
@@ -904,6 +927,18 @@
                 saveProgress();
             });
         });
+
+        // Find the first incomplete step
+        function findNextIncompleteStep() {
+            const steps = document.querySelectorAll('.step');
+            for (let step of steps) {
+                const checkbox = step.querySelector('.step-checkbox');
+                if (!checkbox.checked) {
+                    return step;
+                }
+            }
+            return null;
+        }
 
         // Reset progress
         function resetProgress() {
@@ -914,18 +949,28 @@
                 });
                 document.querySelectorAll('.step').forEach(step => {
                     step.classList.remove('completed');
+                    step.classList.remove('expanded');
                 });
                 updateProgress();
+
+                // Expand first step after reset
+                const firstStep = document.querySelector('.step[data-step="1"]');
+                if (firstStep) {
+                    firstStep.classList.add('expanded');
+                }
             }
         }
 
         // Initialize on load
         document.addEventListener('DOMContentLoaded', () => {
             loadProgress();
-        });
 
-        // Auto-expand first step
-        document.querySelector('.step[data-step="1"]').classList.add('expanded');
+            // Auto-expand first incomplete step
+            const firstIncomplete = findNextIncompleteStep();
+            if (firstIncomplete) {
+                firstIncomplete.classList.add('expanded');
+            }
+        });
     </script>
 </body>
 </html>
