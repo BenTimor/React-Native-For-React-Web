@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { StyleSheet, FlatList, View } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -18,11 +19,14 @@ import { BucketListItem } from '@/components/bucket-list-item';
 
 export default function CompletedScreen() {
   // ==========================================
-  // 📚 STEP 2 & 5: Use local state (same as index.tsx)
+  // 📚 STEP 5: Use local state (same as index.tsx)
   // ==========================================
-  // Uncomment this for Steps 2-5 to work with local state:
+  // Copy the same state and functions from index.tsx STEP 2!
+  // This lets both tabs work with the same local state pattern.
+  // Uncomment this for Step 5:
   /*
   const [items, setItems] = useState<any[]>([]);
+  const isLoading = false;
 
   const deleteItem = (id: string) => {
     setItems(items.filter(item => item.id !== id));

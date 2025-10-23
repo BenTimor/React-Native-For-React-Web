@@ -479,21 +479,25 @@
                         <h3>What to do:</h3>
                         <div class="todo-list">
                             <div class="todo-item">Still in <code>app/(tabs)/index.tsx</code>, find <code>📚 STEP 2: Use local state</code></div>
-                            <div class="todo-item">Comment out the STEP 1 hardcoded array (or delete it)</div>
-                            <div class="todo-item">Uncomment the STEP 2 section (useState with addItem, deleteItem, toggleComplete)</div>
+                            <div class="todo-item">Comment out the STEP 1 hardcoded array</div>
+                            <div class="todo-item">Read the challenge comments in STEP 2 - can you implement it yourself?</div>
+                            <div class="todo-item">Try implementing <code>addItem</code>, <code>deleteItem</code>, and <code>toggleComplete</code></div>
+                            <div class="todo-item">If you get stuck, uncomment the solution code inside each function</div>
                             <div class="todo-item">Comment out the "TEMPORARY: Empty placeholder" section</div>
-                            <div class="todo-item">Check out <code>components/add-item-modal.tsx</code> - implement the <code>handleAdd</code> function</div>
+                            <div class="todo-item">In <code>components/add-item-modal.tsx</code>, implement <code>handleAdd</code></div>
                         </div>
 
                         <div class="challenge">
-                            <div class="challenge-title">🎯 Challenge</div>
-                            <p>In <code>components/add-item-modal.tsx</code>, implement the <code>handleAdd</code> function:</p>
+                            <div class="challenge-title">🎯 Challenge - Try it yourself first!</div>
+                            <p><strong>You already know how to do this from React web!</strong></p>
+                            <p style="margin-top: 8px;">Think about:</p>
                             <ul style="margin-left: 20px; margin-top: 8px;">
-                                <li>Check if title is not empty (use <code>title.trim()</code>)</li>
-                                <li>Call <code>onAdd(title.trim(), description.trim() || undefined)</code></li>
-                                <li>Clear the form: <code>setTitle('')</code> and <code>setDescription('')</code></li>
-                                <li>Close modal: <code>onClose()</code></li>
+                                <li><strong>addItem:</strong> Create new item object, add to array with spread operator <code>[...items, newItem]</code></li>
+                                <li><strong>deleteItem:</strong> Filter out the item by id - exactly like web!</li>
+                                <li><strong>toggleComplete:</strong> Map over items, update the one that matches - same as web!</li>
                             </ul>
+                            <p style="margin-top: 8px;"><strong>Modal handleAdd:</strong> Validate title, call onAdd, clear form, close modal.</p>
+                            <p style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">💡 Only look at the commented solutions if you're truly stuck!</p>
                         </div>
 
                         <div class="key-learning">

@@ -51,28 +51,30 @@ Good news! You already know most of what you need:
 
 ### ✅ Step 2: Add New Items (5 min)
 
-**Goal**: Allow users to add new bucket list items
+**Goal**: Allow users to add new bucket list items using local state
 
 **What to do**:
-1. Still in `app/(tabs)/index.tsx`, find `📚 STEP 2`
-2. Notice the floating `+` button at the bottom - it's already wired up!
-3. Check out `components/add-item-modal.tsx` - find the `handleAdd` function
-4. **Challenge**: Implement the logic to:
-   - Check if title is not empty
-   - Call `onAdd` with the title and description
-   - Clear the form and close modal
-5. Uncomment the hook at the top of `index.tsx`:
-   ```typescript
-   const { items, isLoading, addItem, deleteItem, toggleComplete } = useBucketStorage();
-   ```
-6. Remove the temporary hardcoded items array
+1. Still in `app/(tabs)/index.tsx`, find `📚 STEP 2: Use local state`
+2. Comment out the STEP 1 hardcoded array
+3. **🎯 CHALLENGE - Try implementing yourself first!** You already know this from React web:
+   - Implement `addItem`: Create item object, add to array with `[...items, newItem]`
+   - Implement `deleteItem`: Filter out item by id
+   - Implement `toggleComplete`: Map over items, update the matching one
+4. If you get stuck, uncomment the solution code inside each function
+5. Comment out the "TEMPORARY: Empty placeholder" section
+6. In `components/add-item-modal.tsx`, implement the `handleAdd` function:
+   - Check if title is not empty (`title.trim()`)
+   - Call `onAdd(title.trim(), description.trim() || undefined)`
+   - Clear form: `setTitle('')` and `setDescription('')`
+   - Close modal: `onClose()`
 
 **Key Learning**:
 - Modal component in React Native (built-in!)
 - TextInput is like `<input>` but uses `onChangeText` instead of `onChange`
 - State management is EXACTLY the same as React web
+- **Note**: This local state only works for one tab. In STEP 6, we'll switch to a shared hook!
 
-**Check your work**: Tap the + button, add an item, it should appear in the list
+**Check your work**: Tap the + button, add an item, it should appear in the list. The "Completed" tab won't work yet - that's ok!
 
 ---
 

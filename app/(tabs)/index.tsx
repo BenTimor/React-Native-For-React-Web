@@ -49,36 +49,52 @@ export default function MyBucketListScreen() {
   // ==========================================
   // 📚 STEP 2: Use local state (no persistence yet!)
   // ==========================================
-  // Uncomment this for Step 2 to add/delete items with useState:
+  // 🎯 CHALLENGE: Try implementing these yourself using your React web knowledge!
+  // Think about:
+  // - How do you add items to an array in React? (Hint: spread operator)
+  // - How do you remove items? (Hint: .filter())
+  // - How do you update an item? (Hint: .map())
+  //
+  // Only uncomment the solution below if you get stuck:
   /*
   const [items, setItems] = useState<any[]>([]);
+  const isLoading = false; // No loading needed for local state!
 
   const addItem = (title: string, description?: string) => {
-    const newItem = {
-      id: Date.now().toString(),
-      title,
-      description,
-      completed: false,
-      createdAt: new Date().toISOString(),
-    };
-    setItems([...items, newItem]);
+    // TODO: Create a new item object with id, title, description, completed, createdAt
+    // TODO: Add it to the items array using setItems
+    // Uncomment below if you get stuck:
+    // const newItem = {
+    //   id: Date.now().toString(),
+    //   title,
+    //   description,
+    //   completed: false,
+    //   createdAt: new Date().toISOString(),
+    // };
+    // setItems([...items, newItem]);
   };
 
   const deleteItem = (id: string) => {
-    setItems(items.filter(item => item.id !== id));
+    // TODO: Filter out the item with the given id
+    // Uncomment below if you get stuck:
+    // setItems(items.filter(item => item.id !== id));
   };
 
   const toggleComplete = (id: string) => {
-    setItems(items.map(item => {
-      if (item.id === id) {
-        return {
-          ...item,
-          completed: !item.completed,
-          completedAt: !item.completed ? new Date().toISOString() : undefined,
-        };
-      }
-      return item;
-    }));
+    // TODO: Use .map() to update the item with the given id
+    // When marking complete, set completedAt to new Date().toISOString()
+    // When marking incomplete, set completedAt to undefined
+    // Uncomment below if you get stuck:
+    // setItems(items.map(item => {
+    //   if (item.id === id) {
+    //     return {
+    //       ...item,
+    //       completed: !item.completed,
+    //       completedAt: !item.completed ? new Date().toISOString() : undefined,
+    //     };
+    //   }
+    //   return item;
+    // }));
   };
   */
 
