@@ -13,17 +13,6 @@ This workshop teaches React web developers React Native through a progressive, h
 - ✅ Data persists using AsyncStorage
 - ✅ Clean, polished UI with empty states
 
-## 📚 Documentation
-
-### For Instructors
-- **[INSTRUCTOR_NOTES.md](./INSTRUCTOR_NOTES.md)** - Complete teaching guide with timing, tips, and troubleshooting
-- **[COURSE_README.md](./COURSE_README.md)** - Template overview and teaching philosophy
-
-### For Students
-- **[SETUP_GUIDE.md](./SETUP_GUIDE.md)** - Pre-workshop setup instructions (MUST complete before class!)
-- **[CHECKLIST.md](./CHECKLIST.md)** - Step-by-step workshop guide (follow during class)
-- **[QUICK_REFERENCE.md](./QUICK_REFERENCE.md)** - React Web → React Native cheat sheet
-
 ## 🚀 Quick Start
 
 ### Students: Pre-Workshop Setup
@@ -52,26 +41,6 @@ This workshop teaches React web developers React Native through a progressive, h
    ```
    Scan QR code with Expo Go app
 
-**See [SETUP_GUIDE.md](./SETUP_GUIDE.md) for detailed instructions!**
-
-### Instructors: Running the Workshop
-
-1. **Review materials**
-   - Read [INSTRUCTOR_NOTES.md](./INSTRUCTOR_NOTES.md) for complete teaching guide
-   - Test the app on your device
-   - Prepare demo device with completed app
-
-2. **During workshop**
-   - Guide students through [CHECKLIST.md](./CHECKLIST.md)
-   - Live code key sections (see Instructor Notes)
-   - Check understanding at each milestone
-
-3. **Timing** (40 minutes total)
-   - Steps 1-3: 15 min (basic list)
-   - Steps 4-5: 10 min (features)
-   - Step 6: 8 min (persistence)
-   - Step 7: 7 min (polish)
-
 ## 🏗️ Project Structure
 
 ```
@@ -86,10 +55,6 @@ react-next-template/
 │   └── use-bucket-storage.ts   # AsyncStorage hook
 ├── types/
 │   └── bucket-item.ts          # TypeScript interfaces
-├── CHECKLIST.md          # Student workshop guide
-├── SETUP_GUIDE.md        # Pre-workshop setup
-├── QUICK_REFERENCE.md    # Web→Native cheat sheet
-└── INSTRUCTOR_NOTES.md   # Teaching guide
 ```
 
 ## 🎓 Learning Approach
@@ -180,7 +145,6 @@ For quick learners who finish early:
 - Categories and tags
 - Search/filter functionality
 
-See [CHECKLIST.md](./CHECKLIST.md) Advanced section for details.
 
 ## 🆘 Troubleshooting
 
@@ -199,8 +163,6 @@ npx expo start -c  # Clear cache
 rm -rf node_modules
 npm install
 ```
-
-See [SETUP_GUIDE.md](./SETUP_GUIDE.md) for comprehensive troubleshooting.
 
 ## 📚 Resources
 
@@ -227,9 +189,3 @@ Uses Expo SDK 54 with Expo Router for navigation.
 ## 📄 License
 
 Feel free to use this template for your workshops and courses!
-
----
-
-**Ready to teach?** Start with [INSTRUCTOR_NOTES.md](./INSTRUCTOR_NOTES.md)
-
-**Ready to learn?** Start with [SETUP_GUIDE.md](./SETUP_GUIDE.md)
