@@ -417,7 +417,6 @@
                     <div class="step-title">
                         <div class="step-number">1</div>
                         <div class="step-name">Display a Basic List</div>
-                        <div class="step-time">5 min</div>
                     </div>
                     <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -464,7 +463,6 @@
                     <div class="step-title">
                         <div class="step-number">2</div>
                         <div class="step-name">Add New Items</div>
-                        <div class="step-time">5 min</div>
                     </div>
                     <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -506,12 +504,12 @@
                                 <li>Modal component in React Native (built-in!)</li>
                                 <li>TextInput is like <code>&lt;input&gt;</code> but uses <code>onChangeText</code> instead of <code>onChange</code></li>
                                 <li>State management is EXACTLY the same as React web</li>
-                                <li><strong>Note:</strong> This local state only works for one tab. In STEP 6, we'll switch to a shared hook!</li>
+                                <li><strong>Note:</strong> Right now we're using local state. In Step 6, we'll add persistence with AsyncStorage!</li>
                             </ul>
                         </div>
 
                         <div class="checkpoint">
-                            <strong>✅ Check your work:</strong> Tap the + button, add an item, it should appear in the list. Note: The "Completed" tab won't work yet - that's ok!
+                            <strong>✅ Check your work:</strong> Tap the + button, add an item, it should appear in the list!
                         </div>
                     </div>
                 </div>
@@ -524,7 +522,6 @@
                     <div class="step-title">
                         <div class="step-number">3</div>
                         <div class="step-name">Delete Items</div>
-                        <div class="step-time">5 min</div>
                     </div>
                     <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -576,7 +573,6 @@
                     <div class="step-title">
                         <div class="step-number">4</div>
                         <div class="step-name">Add Description Field</div>
-                        <div class="step-time">7 min</div>
                     </div>
                     <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -636,7 +632,6 @@
                     <div class="step-title">
                         <div class="step-number">5</div>
                         <div class="step-name">Mark Items as Done/Undone</div>
-                        <div class="step-time">8 min</div>
                     </div>
                     <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -694,7 +689,6 @@
                     <div class="step-title">
                         <div class="step-number">6</div>
                         <div class="step-name">Save Data with AsyncStorage</div>
-                        <div class="step-time">8 min</div>
                     </div>
                     <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -709,16 +703,17 @@
                         <h3>What to do:</h3>
                         <div class="todo-list">
                             <div class="todo-item">Open <code>hooks/use-bucket-storage.ts</code>, find <code>📚 STEP 6</code></div>
-                            <div class="todo-item">Uncomment <code>loadItems</code> function (loads from AsyncStorage on app start)</div>
-                            <div class="todo-item">Uncomment <code>saveItems</code> function (saves to AsyncStorage when items change)</div>
-                            <div class="todo-item">Back in <code>index.tsx</code>, comment out STEP 2 (useState)</div>
-                            <div class="todo-item">Uncomment STEP 6 (useBucketStorage hook)</div>
-                            <div class="todo-item">Do the same in <code>explore.tsx</code></div>
+                            <div class="todo-item">Uncomment the <code>useEffect</code> that calls <code>loadItems()</code></div>
+                            <div class="todo-item">Uncomment the <code>loadItems</code> function implementation</div>
+                            <div class="todo-item">Uncomment the <code>saveItems</code> function implementation</div>
+                            <div class="todo-item">In each CRUD function (<code>addItem</code>, <code>deleteItem</code>, <code>toggleComplete</code>), uncomment the line that calls <code>saveItems()</code></div>
+                            <div class="todo-item">Back in <code>app/(tabs)/index.tsx</code>, comment out STEP 2 (useState and functions)</div>
+                            <div class="todo-item">Uncomment STEP 6 (useBucketStorage hook) - now we're using the hook instead of local state!</div>
                         </div>
 
                         <div class="challenge">
                             <div class="challenge-title">🎯 Challenge</div>
-                            <p>Notice how the hook works - it's the same logic as STEP 2, but now with persistence! The loading happens in <code>useEffect</code> just like fetching data in React web.</p>
+                            <p>Notice how we're switching from local state to a custom hook! The hook works exactly like your previous useState logic, but now with AsyncStorage for persistence. The loading happens in <code>useEffect</code> just like fetching data in React web.</p>
                         </div>
 
                         <div class="key-learning">
@@ -743,8 +738,7 @@
                     <input type="checkbox" class="step-checkbox">
                     <div class="step-title">
                         <div class="step-number">7</div>
-                        <div class="step-name">Polish the UI</div>
-                        <div class="step-time">7 min</div>
+                        <div class="step-name">Get Creative with Styling!</div>
                     </div>
                     <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -753,31 +747,44 @@
                 <div class="step-content">
                     <div class="step-body">
                         <div class="step-goal">
-                            <strong>🎯 Goal:</strong> Add nice touches - empty states, date formatting, icons
+                            <strong>🎯 Goal:</strong> Make your app beautiful and unique! Time to be creative with styling.
                         </div>
 
-                        <h3>What to do:</h3>
-                        <div class="todo-list">
-                            <div class="todo-item">Open <code>components/bucket-list-item.tsx</code>, find <code>📚 STEP 7</code></div>
-                            <div class="todo-item">Implement <code>formatDate</code> function to show nice dates like "Jan 15, 2024"</div>
-                        </div>
+                        <h3>🎨 Your Creative Challenge:</h3>
+                        <p style="margin-bottom: 15px;">Now that your app works, make it yours! Pick any (or all!) of these ideas and experiment with React Native styling:</p>
 
                         <div class="challenge">
-                            <div class="challenge-title">🎯 Challenge</div>
-                            <p>Use JavaScript's <code>Date</code> object - same as web! Format it nicely with <code>toLocaleDateString()</code>.</p>
+                            <div class="challenge-title">💡 Styling Ideas to Try</div>
+                            <p><strong>Start with something simple:</strong></p>
+                            <ul style="margin-left: 20px; margin-top: 8px;">
+                                <li><strong>Format dates nicely:</strong> In <code>bucket-list-item.tsx</code>, implement <code>formatDate</code> to show "Jan 15, 2024" instead of ISO strings</li>
+                                <li><strong>Add shadows to items:</strong> Try <code>shadowColor</code>, <code>shadowOffset</code>, <code>shadowOpacity</code>, <code>shadowRadius</code> (iOS) and <code>elevation</code> (Android)</li>
+                                <li><strong>Card-style items:</strong> Increase border radius, add margin between items, experiment with background colors</li>
+                            </ul>
+                            <p style="margin-top: 12px;"><strong>Get more creative:</strong></p>
+                            <ul style="margin-left: 20px; margin-top: 8px;">
+                                <li><strong>Gradient background:</strong> Use <code>LinearGradient</code> from <code>expo-linear-gradient</code> (already installed!)</li>
+                                <li><strong>Custom colors:</strong> Change the theme colors in <code>constants/theme.ts</code></li>
+                                <li><strong>Animated checkboxes:</strong> Explore React Native's <code>Animated</code> API</li>
+                                <li><strong>Custom fonts:</strong> Try different <code>fontWeight</code>, <code>fontStyle</code>, or load custom fonts</li>
+                                <li><strong>Icon variations:</strong> Use different SF Symbols/Material Icons from <code>IconSymbol</code></li>
+                            </ul>
+                            <p style="margin-top: 12px; font-size: 0.9em; opacity: 0.8;">💡 No right or wrong answers - experiment and see what looks good!</p>
                         </div>
 
                         <div class="key-learning">
                             <div class="key-learning-title">💡 Key Learning</div>
                             <ul style="margin-left: 20px;">
-                                <li>Date formatting works the same as web</li>
-                                <li>Icons come from SF Symbols (iOS) / Material Icons (Android)</li>
-                                <li>Empty states improve UX - same pattern as web</li>
+                                <li>React Native styling is similar to CSS-in-JS but with platform-specific properties</li>
+                                <li><code>StyleSheet.create()</code> helps with performance and validation</li>
+                                <li>Shadows work differently on iOS (shadowColor, etc.) vs Android (elevation)</li>
+                                <li>You can mix and match styles with arrays: <code>style={[styles.base, styles.extra]}</code></li>
+                                <li>Styling in React Native is just JavaScript - same as web!</li>
                             </ul>
                         </div>
 
                         <div class="checkpoint">
-                            <strong>✅ Check your work:</strong> Completed items should show nicely formatted dates
+                            <strong>✅ Check your work:</strong> Your app should look unique and polished! Share it with your neighbor and see what they created.
                         </div>
                     </div>
                 </div>
